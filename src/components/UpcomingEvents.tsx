@@ -1,8 +1,18 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, MapPin, Users, ArrowRight, Star } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Calendar, Clock, MapPin, Users, ArrowRight, Star, CalendarPlus } from "lucide-react";
 
 const UpcomingEvents = () => {
+  const addToGoogleCalendar = (event: any) => {
+    const startDate = new Date(event.startTime).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+    const endDate = new Date(event.endTime).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+    
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
+    
+    window.open(googleCalendarUrl, '_blank');
+  };
+
   const events = [
     {
       id: 1,
@@ -11,6 +21,8 @@ const UpcomingEvents = () => {
       time: "16:00 - 22:00 WIB",
       location: "Panggung Utama",
       description: "Konser musik keluarga dengan berbagai artis lokal dan permainan seru",
+      startTime: "2024-12-25T16:00:00",
+      endTime: "2024-12-25T22:00:00",
       attendees: "500+ peserta",
       category: "Musik",
       featured: true
@@ -22,6 +34,8 @@ const UpcomingEvents = () => {
       time: "10:00 - 15:00 WIB",
       location: "Area Bermain",
       description: "Kompetisi mewarnai untuk anak-anak usia 5-12 tahun dengan hadiah menarik",
+      startTime: "2024-12-28T10:00:00",
+      endTime: "2024-12-28T15:00:00",
       attendees: "100+ peserta",
       category: "Anak-anak",
       featured: false
@@ -33,6 +47,8 @@ const UpcomingEvents = () => {
       time: "19:00 - 01:00 WIB",
       location: "Seluruh Taman",
       description: "Pesta kembang api spektakuler dan pertunjukan cahaya menakjubkan",
+      startTime: "2024-12-31T19:00:00",
+      endTime: "2025-01-01T01:00:00",
       attendees: "1000+ peserta",
       category: "Perayaan",
       featured: true
@@ -147,14 +163,15 @@ const UpcomingEvents = () => {
 
                 {/* CTA Button */}
                 <Button 
+                  onClick={() => addToGoogleCalendar(event)}
                   className={`w-full group-hover:scale-105 transition-all ${
                     event.featured 
                       ? "bg-white text-primary hover:bg-white/90 font-bold" 
                       : "bg-gradient-primary hover:shadow-glow font-bold"
                   }`}
                 >
-                  Daftar Sekarang
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  Tambah ke Kalender
+                  <CalendarPlus className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </CardContent>
             </Card>
@@ -164,12 +181,15 @@ const UpcomingEvents = () => {
         {/* View All Button */}
         <div className="text-center mt-12 animate-fade-in">
           <Button 
+            asChild
             size="lg" 
             variant="outline" 
             className="px-8 py-4 text-lg font-bold hover:shadow-fun hover:scale-105 transition-all border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
           >
-            Lihat Semua Acara
-            <ArrowRight className="ml-2 h-5 w-5" />
+            <Link to="/jadwal">
+              Lihat Semua Acara
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
           </Button>
         </div>
       </div>

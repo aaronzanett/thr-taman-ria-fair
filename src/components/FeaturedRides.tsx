@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import { 
   Star, 
   Clock, 
@@ -185,14 +186,17 @@ const FeaturedRides = () => {
 
                   {/* CTA Button */}
                   <Button 
+                    asChild
                     className={`w-full group-hover:scale-105 transition-all font-bold ${
                       ride.featured 
                         ? "bg-gradient-primary hover:shadow-glow" 
                         : "bg-gradient-sky hover:shadow-float"
                     }`}
                   >
-                    Lihat Detail Wahana
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    <Link to={`/wahana#ride-${ride.id}`}>
+                      Lihat Detail Wahana
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -203,11 +207,14 @@ const FeaturedRides = () => {
         {/* View All Button */}
         <div className="text-center mt-12 animate-fade-in">
           <Button 
+            asChild
             size="lg" 
             className="bg-gradient-fun hover:shadow-glow px-12 py-4 text-lg font-bold hover:scale-105 transition-all"
           >
-            Jelajahi Semua Wahana
-            <ArrowRight className="ml-2 h-5 w-5" />
+            <Link to="/wahana">
+              Jelajahi Semua Wahana
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
           </Button>
         </div>
       </div>
