@@ -193,7 +193,7 @@ const FeaturedRides = () => {
                         : "bg-gradient-sky hover:shadow-float"
                     }`}
                   >
-                    <Link to={`/wahana#ride-${ride.id}`}>
+                    <Link to={`/wahana/${ride.id}`}>
                       Lihat Detail Wahana
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Link>

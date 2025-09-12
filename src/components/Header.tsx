@@ -15,19 +15,19 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-gradient-primary shadow-fun sticky top-0 z-50 backdrop-blur-sm">
+    <header className="bg-white/98 shadow-fun sticky top-0 z-50 backdrop-blur-sm border-b border-border/20">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="bg-card p-2 rounded-2xl shadow-float group-hover:animate-bounce-gentle transition-all">
-              <FerrisWheel className="h-8 w-8 text-primary" />
+            <div className="bg-gradient-primary p-2 rounded-2xl shadow-float group-hover:animate-bounce-gentle transition-all">
+              <FerrisWheel className="h-8 w-8 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="font-display font-bold text-xl text-primary-foreground">
+              <h1 className="font-display font-bold text-xl text-foreground">
                 THR Taman Ria Fair
               </h1>
-              <p className="text-sm text-primary-foreground/80 font-medium">
+              <p className="text-sm text-muted-foreground font-medium">
                 Taman Hiburan Rakyat
               </p>
             </div>
@@ -41,7 +41,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="flex items-center space-x-2 px-4 py-2 rounded-xl text-primary-foreground hover:bg-card/20 transition-all hover:shadow-fun hover:scale-105"
+                  className="flex items-center space-x-2 px-4 py-2 rounded-xl text-foreground hover:bg-muted/50 transition-all hover:shadow-fun hover:scale-105"
                 >
                   <IconComponent className="h-4 w-4" />
                   <span className="font-medium">{item.name}</span>
@@ -60,7 +60,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-xl bg-card/20 text-primary-foreground hover:bg-card/30 transition-all"
+            className="md:hidden p-2 rounded-xl bg-muted/50 text-foreground hover:bg-muted/70 transition-all"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>

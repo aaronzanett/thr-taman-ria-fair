@@ -13,6 +13,7 @@ import {
   Search
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 import rideCarousel from "@/assets/ride-carousel.jpg";
 import ridePirateShip from "@/assets/ride-pirate-ship.jpg";
 import rideFunhouse from "@/assets/ride-funhouse.jpg";
@@ -146,9 +147,11 @@ const Wahana = () => {
                     </div>
                   </div>
 
-                  <Button className="w-full bg-gradient-primary hover:shadow-glow font-bold">
-                    Lihat Detail
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                  <Button asChild className="w-full bg-gradient-primary hover:shadow-glow font-bold">
+                    <Link to={`/wahana/${ride.id}`}>
+                      Lihat Detail
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>

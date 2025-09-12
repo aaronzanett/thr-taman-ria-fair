@@ -17,6 +17,9 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 220 40% 15%;
 
+    /* Navbar background - soft white */
+    --navbar-bg: 0 0% 98%;
+
     /* Taman Ria Brand Colors */
     --primary: 45 100% 55%; /* Bright Yellow */
     --primary-foreground: 220 40% 15%;

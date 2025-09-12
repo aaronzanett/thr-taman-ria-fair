@@ -189,6 +189,12 @@ const Jadwal = () => {
                         variant="outline" 
                         size="sm"
                         className="w-full hover:shadow-fun transition-all"
+                        onClick={() => {
+                          const startDate = new Date(event.date + " " + event.time.split(" - ")[0]);
+                          const endDate = new Date(event.date + " " + event.time.split(" - ")[1]);
+                          const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${startDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z/${endDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
+                          window.open(googleCalendarUrl, '_blank');
+                        }}
                       >
                         <Plus className="h-4 w-4 mr-2" />
                         Tambah ke Kalender
