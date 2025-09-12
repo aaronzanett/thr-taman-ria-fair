@@ -4,72 +4,52 @@ import { ChevronLeft, ChevronRight, PlayCircle, Star } from "lucide-react";
 import heroRollerCoaster from "@/assets/hero-roller-coaster.jpg";
 import heroFerrisWheel from "@/assets/hero-ferris-wheel.jpg";
 import heroBumperCars from "@/assets/hero-bumper-cars.jpg";
-
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const slides = [
-    {
-      image: heroRollerCoaster,
-      title: "Roller Coaster Terbesar!",
-      subtitle: "Rasakan sensasi kecepatan dan ketinggian yang mendebarkan",
-      cta: "Coba Sekarang",
-      badge: "Wahana Terpopuler"
-    },
-    {
-      image: heroFerrisWheel,
-      title: "Bianglala Raksasa",
-      subtitle: "Nikmati pemandangan kota dari ketinggian 50 meter",
-      cta: "Naik Bianglala",
-      badge: "Pemandangan Terbaik"
-    },
-    {
-      image: heroBumperCars,
-      title: "Bumper Car Seru!",
-      subtitle: "Berkendara dan bertabrakan dengan aman bersama keluarga",
-      cta: "Main Sekarang",
-      badge: "Ramah Keluarga"
-    }
-  ];
-
+  const slides = [{
+    image: heroRollerCoaster,
+    title: "Roller Coaster Terbesar!",
+    subtitle: "Rasakan sensasi kecepatan dan ketinggian yang mendebarkan",
+    cta: "Coba Sekarang",
+    badge: "Wahana Terpopuler"
+  }, {
+    image: heroFerrisWheel,
+    title: "Bianglala Raksasa",
+    subtitle: "Nikmati pemandangan kota dari ketinggian 50 meter",
+    cta: "Naik Bianglala",
+    badge: "Pemandangan Terbaik"
+  }, {
+    image: heroBumperCars,
+    title: "Bumper Car Seru!",
+    subtitle: "Berkendara dan bertabrakan dengan aman bersama keluarga",
+    cta: "Main Sekarang",
+    badge: "Ramah Keluarga"
+  }];
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide(prev => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
   }, []);
-
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setCurrentSlide(prev => (prev + 1) % slides.length);
   };
-
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setCurrentSlide(prev => (prev - 1 + slides.length) % slides.length);
   };
-
-  return (
-    <section className="relative h-screen overflow-hidden">
+  return <section className="relative h-screen overflow-hidden">
       {/* Carousel Container */}
       <div className="relative h-full">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-all duration-700 ${
-              index === currentSlide
-                ? "opacity-100 scale-100"
-                : "opacity-0 scale-105"
-            }`}
-          >
+        {slides.map((slide, index) => <div key={index} className={`absolute inset-0 transition-all duration-700 ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"}`}>
             {/* Background Image */}
-            <div 
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${slide.image})` }}
-            >
+            <div className="absolute inset-0 bg-cover bg-center" style={{
+          backgroundImage: `url(${slide.image})`
+        }}>
               <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/30" />
             </div>
 
             {/* Content */}
-            <div className="relative z-10 h-full flex items-center">
+            <div className="relative z-10 h-full flex items-center px-[70px]">
               <div className="container mx-auto px-4">
                 <div className="max-w-2xl animate-slide-in-up">
                   {/* Badge */}
@@ -96,49 +76,28 @@ const HeroCarousel = () => {
                       <PlayCircle className="mr-2 h-5 w-5" />
                       {slide.cta}
                     </Button>
-                    <Button 
-                      variant="outline" 
-                      size="lg" 
-                      className="text-white border-white/30 hover:bg-white/10 text-lg px-8 py-4 rounded-2xl backdrop-blur-sm font-bold"
-                    >
+                    <Button variant="outline" size="lg" className="text-white border-white/30 text-lg px-8 py-4 rounded-2xl backdrop-blur-sm font-bold bg-gray-900 hover:bg-gray-800">
                       Lihat Semua Wahana
                     </Button>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          </div>)}
       </div>
 
       {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all hover:scale-110 shadow-fun"
-      >
+      <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all hover:scale-110 shadow-fun">
         <ChevronLeft className="h-6 w-6 text-white" />
       </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all hover:scale-110 shadow-fun"
-      >
+      <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all hover:scale-110 shadow-fun">
         <ChevronRight className="h-6 w-6 text-white" />
       </button>
 
       {/* Slide Indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
         <div className="flex space-x-3">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentSlide
-                  ? "bg-white shadow-glow scale-125"
-                  : "bg-white/50 hover:bg-white/75"
-              }`}
-            />
-          ))}
+          {slides.map((_, index) => <button key={index} onClick={() => setCurrentSlide(index)} className={`w-3 h-3 rounded-full transition-all ${index === currentSlide ? "bg-white shadow-glow scale-125" : "bg-white/50 hover:bg-white/75"}`} />)}
         </div>
       </div>
 
@@ -151,8 +110,6 @@ const HeroCarousel = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroCarousel;
